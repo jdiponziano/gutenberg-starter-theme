@@ -8,33 +8,33 @@
  *
  * @link https://developer.wordpress.org/themes/functionality/custom-headers/
  *
- * @package Gutenbergtheme
+ * @package themename
  */
 
 /**
  * Set up the WordPress core custom header feature.
  *
- * @uses gutenbergtheme_header_style()
+ * @uses themename_header_style()
  */
-function gutenbergtheme_custom_header_setup() {
-	add_theme_support( 'custom-header', apply_filters( 'gutenbergtheme_custom_header_args', array(
+function themename_custom_header_setup() {
+	add_theme_support( 'custom-header', apply_filters( 'themename_custom_header_args', array(
 		'default-image'          => '',
 		'default-text-color'     => '000000',
 		'width'                  => 1000,
 		'height'                 => 250,
 		'flex-height'            => true,
-		'wp-head-callback'       => 'gutenbergtheme_header_style',
+		'wp-head-callback'       => 'themename_header_style',
 	) ) );
 }
-add_action( 'after_setup_theme', 'gutenbergtheme_custom_header_setup' );
+add_action( 'after_setup_theme', 'themename_custom_header_setup' );
 
-if ( ! function_exists( 'gutenbergtheme_header_style' ) ) :
+if ( ! function_exists( 'themename_header_style' ) ) :
 	/**
 	 * Styles the header image and text displayed on the blog.
 	 *
-	 * @see gutenbergtheme_custom_header_setup().
+	 * @see themename_custom_header_setup().
 	 */
-	function gutenbergtheme_header_style() {
+	function themename_header_style() {
 		$header_text_color = get_header_textcolor();
 
 		/*
