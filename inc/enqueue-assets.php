@@ -40,8 +40,6 @@ function themename_fonts_url() {
 function themename_scripts() {
 	wp_enqueue_style( 'themename-base-style', get_stylesheet_uri() . '/css/style.min.css' );
 
-	wp_enqueue_style( 'themename-blocks-style', get_template_directory_uri() . '/css/blocks.css', null, time() );
-
 	wp_enqueue_style( 'themename-fonts', themename_fonts_url() );
 
 	wp_enqueue_script( 'themename-scripts', get_template_directory_uri() . '/js/theme.min.js', [ 'jquery' ], time(), true );
@@ -60,7 +58,7 @@ function themename_block_assets() {
 	wp_enqueue_style(
 		'themename-blocks-css',
 		get_stylesheet_directory_uri() . '/css/blocks.min.css',
-		null,
+		[ 'themename-base-style' ],
         time() // Change for production
   );
   
