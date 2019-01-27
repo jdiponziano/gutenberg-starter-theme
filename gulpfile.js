@@ -1,12 +1,21 @@
+//Require dependencies
+
+//Utilities
 const gulp = require('gulp');
+const gutil = require('gulp-util');
+const log = require('fancy-log');
+const notify = require('gulp-notify');
+const plumber = require('gulp-plumber');
+const rename = require('gulp-rename');
+const sassdoc = require('sassdoc');
+
+//CSS dependencies
+const postcss = require('gulp-postcss');
 const sass = require('gulp-sass');
 const sourcemaps = require('gulp-sourcemaps');
-const rename = require('gulp-rename');
-// var minify = require( 'gulp-minify-css' );
 const autoprefixer = require('gulp-autoprefixer');
-// var util = require( 'gulp-util' );
-const log = require('fancy-log');
-//require( 'stylelint' )(),
+const mqpacker = require('css-mqpacker');
+const cssnano = require('gulp-cssnano');
 
 // Assets paths.
 const paths = {
@@ -24,8 +33,7 @@ const paths = {
  * https://www.npmjs.com/package/gulp-util
  */
 function handleErrors() {
-	var args = Array.prototype.slice.call(arguments);
-
+	const args = Array.prototype.slice.call(arguments);
 	notify
 		.onError({
 			title: 'Task Failed [<%= error.message %>',
@@ -80,3 +88,38 @@ gulp.task(
 		);
 	})
 );
+
+/**
+ * Minify and optimize style.css.
+ *
+ * https://www.npmjs.com/package/gulp-cssnano
+ */
+gulp.task(
+	'minify',
+	gulp.series(function() {
+		log('Minify CSS files ' + new Date().toString());
+		return gulp
+			.src('./style.css')
+			.pipe(plumber({ errorHandler: handleErrors }))
+			.pipe(
+				cssnano({
+					safe: true // Use safe optimizations.
+				})
+			)
+			.pipe(gulp.dest('./'));
+	})
+);
+
+/**
+ * Sass docs.
+ *
+ * http://sassdoc.com/getting-started/
+ */
+gulp.task('sassdoc', function() {
+	let options = {
+		dest: 'docs',
+		verbose: true
+	};
+
+	return gulp.src('./scss/**/*.scss').pipe(sassdoc(options));
+});
