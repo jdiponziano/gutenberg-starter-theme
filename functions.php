@@ -161,9 +161,9 @@ function themename_fonts_url() {
  * Enqueue scripts and styles.
  */
 function themename_scripts() {
-	wp_enqueue_style( 'gutenbergbase-style', get_stylesheet_uri() );
+	wp_enqueue_style( 'themename-base-style', get_stylesheet_uri() );
 
-	wp_enqueue_style( 'themenameblocks-style', get_template_directory_uri() . '/css/blocks.css' );
+	wp_enqueue_style( 'themename-blocks-style', get_template_directory_uri() . '/css/blocks.css' );
 
 	wp_enqueue_style( 'themename-fonts', themename_fonts_url() );
 
