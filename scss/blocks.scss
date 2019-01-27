@@ -1,49 +1,38 @@
 /*
-Styling for Gutenberg editor blocks.
+Block Styling for theme. 
 */
-
+/*--------------------------------------------------------------
+>>> TABLE OF CONTENTS:
+# Global .entry-content
+# Lists
+# Column Blocks
+# Video Blocks
+# Image Blocks
+# Gallery Blocks
+# Table Blocks
+# Embed Blocks
+# Blockquote Blocks
+## Blockquotes
+## Pull quotes
+# Separator Block
+# Cover Image Block
+# Cover Text Block
+# Latests Posts Block
+# Button Block
+# Block Color Palette
+----------------------------------------------------------------*/
 @import './03-wp-blocks/global-entry-content';
 @import './03-wp-blocks/lists';
+@import './03-wp-blocks/columns';
 @import './03-wp-blocks/video';
 @import './03-wp-blocks/image';
 @import './03-wp-blocks/gallery';
-@import './03-wp-blocks/latest-posts';
 @import './03-wp-blocks/table';
 @import './03-wp-blocks/embed';
 @import './03-wp-blocks/blockquotes';
 @import './03-wp-blocks/separator';
-
-/*--------------------------------------------------------------
-# Block Color Palette Colors
---------------------------------------------------------------*/
-.has-strong-blue-color {
-  color: #0073aa;
-}
-
-.has-strong-blue-background-color {
-  background-color: #0073aa;
-}
-
-.has-lighter-blue-color {
-  color: #229fd8;
-}
-
-.has-lighter-blue-background-color {
-  background-color: #229fd8;
-}
-
-.has-very-light-gray-color {
-  color: #eee;
-}
-
-.has-very-light-gray-background-color {
-  background-color: #eee;
-}
-
-.has-very-dark-gray-color {
-  color: #444;
-}
-
-.has-very-dark-gray-background-color {
-  background-color: #444;
-}
+@import './03-wp-blocks/cover-image';
+@import './03-wp-blocks/cover-text';
+@import './03-wp-blocks/latest-posts';
+@import './03-wp-blocks/button';
+@import './03-wp-blocks/block_color_palette';
