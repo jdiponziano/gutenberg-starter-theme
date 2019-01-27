@@ -1,0 +1,16 @@
+/*--------------------------------------------------------------
+# Table Block
+--------------------------------------------------------------*/
+.wp-block-table {
+  display: block;
+  overflow-x: auto;
+}
+
+.wp-block-table table {
+  border-collapse: collapse;
+  width: 100%
+}
+
+.wp-block-table td, .wp-block-table th {
+  padding: .5em;
+}

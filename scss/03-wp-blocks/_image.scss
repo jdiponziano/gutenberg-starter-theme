@@ -1,0 +1,15 @@
+/*--------------------------------------------------------------
+# Image Blocks
+--------------------------------------------------------------*/
+.wp-block-image img {
+  display: block;
+}
+
+.wp-block-image.alignleft,
+.wp-block-image.alignright {
+  width: 100%
+}
+
+.wp-block-image.alignfull img {
+  width: 100vw;
+}
