@@ -7,7 +7,8 @@ const log = require('fancy-log');
 const notify = require('gulp-notify');
 const plumber = require('gulp-plumber');
 const rename = require('gulp-rename');
-const sassdoc = require('sassdoc');
+const sassdocs = require('sassdoc');
+const del = require('del');
 
 //CSS dependencies
 const postcss = require('gulp-postcss');
@@ -17,12 +18,19 @@ const autoprefixer = require('gulp-autoprefixer');
 const mqpacker = require('css-mqpacker');
 const cssnano = require('gulp-cssnano');
 
+//JS dependencies
+const babel = require('gulp-babel');
+const uglify = require('gulp-uglify');
+const concat = require('gulp-concat');
+
+//Image dependencies
+const image = require('gulp-image');
+
 // Assets paths.
 const paths = {
-	css: './*.css',
-	images: './images/originals/*',
+	css: './css/*.css',
+	images: './assets/images/*',
 	scss: './scss/**/*.scss',
-	concat_scripts: ['./js/lib/*.js', './js/vendor/*.js'],
 	scripts: ['./js/*.js', '!./js/*.min.js']
 };
 
@@ -47,6 +55,11 @@ function handleErrors() {
 	// Prevent the 'watch' task from stopping.
 	this.emit('end');
 }
+function clean() {
+  // You can use multiple globbing patterns as you would with `gulp.src`,
+  // for example if you are using del 2.0 or above, return its promise
+  return del([paths.css]);
+}
 
 /**
  * Compile Sass.
@@ -58,68 +71,136 @@ function handleErrors() {
  * https://www.npmjs.com/package/gulp-cssnano
  */
 
-gulp.task(
-	'sass',
-	gulp.series(function() {
-		log('Generate CSS files ' + new Date().toString());
-		return (
-			gulp
-				.src(paths.scss)
-				// Deal with errors.
-				.pipe(plumber({ errorHandler: handleErrors }))
-				// Wrap tasks in a sourcemap.
-				.pipe(sourcemaps.init())
-				.pipe(
-					sass({
-						errLogToConsole: true,
-						outputStyle: 'expanded'
+function styles() {
+	log('Generate CSS files ' + new Date().toString());
+	return (
+		gulp
+			.src(paths.scss)
+			// Deal with errors.
+			.pipe(plumber({ errorHandler: handleErrors }))
+			// Wrap tasks in a sourcemap.
+			.pipe(sourcemaps.init())
+			.pipe(
+				sass({
+					errLogToConsole: true,
+					outputStyle: 'expanded'
+				})
+			)
+			.pipe(autoprefixer('last 3 version', 'ie11'))
+			.pipe(
+				postcss([
+					mqpacker({
+						sort: true
 					})
-				)
-				.pipe(
-					postcss([
-						autoprefixer(),
-						mqpacker({
-							sort: true
-						})
-					])
-				)
-				.pipe(sourcemaps.write())
-				.pipe(gulp.dest('./'))
-		);
-	})
-);
+				])
+			)
+			.pipe(sourcemaps.write())
+			.pipe(gulp.dest('./css'))
+	);
+}
 
 /**
  * Minify and optimize style.css.
  *
  * https://www.npmjs.com/package/gulp-cssnano
  */
-gulp.task(
-	'minify',
-	gulp.series(function() {
-		log('Minify CSS files ' + new Date().toString());
-		return gulp
-			.src('./style.css')
-			.pipe(plumber({ errorHandler: handleErrors }))
-			.pipe(
-				cssnano({
-					safe: true // Use safe optimizations.
-				})
-			)
-			.pipe(gulp.dest('./'));
-	})
-);
+function minify() {
+	log('Minify CSS files ' + new Date().toString());
+	return gulp
+		.src(paths.css)
+		.pipe(plumber({ errorHandler: handleErrors }))
+		.pipe(
+			cssnano({
+				safe: true // Use safe optimizations.
+			})
+		)
+		.pipe(
+			rename({
+				suffix: '.min'
+			})
+		)
+		.pipe(gulp.dest('./css'));
+}
+
+function scripts() {
+	log('Compile Scripts ' + new Date().toString());
+	return gulp
+		.src(paths.scripts, { sourcemaps: true })
+		.pipe(plumber({ errorHandler: handleErrors }))
+		.pipe(babel())
+		.pipe(uglify())
+		.pipe(concat('theme.min.js'))
+		.pipe(gulp.dest('./js'));
+}
+
+/**
+ * Optimize images.
+ *
+ * https://www.npmjs.com/package/gulp-image
+ */
+function images() {
+	log('Compress images ' + new Date().toString());
+	return gulp
+		.src(paths.images)
+		.pipe(plumber({ errorHandler: handleErrors }))
+		.pipe(
+			image({
+				pngquant: true,
+				optipng: false,
+				zopflipng: true,
+				jpegRecompress: false,
+				mozjpeg: true,
+				guetzli: false,
+				gifsicle: true,
+				svgo: true,
+				concurrent: 10,
+				quiet: false
+			})
+		)
+		.pipe(gulp.dest('./assets/images'));
+}
 
 /**
  * Sass docs.
  *
  * http://sassdoc.com/getting-started/
  */
-gulp.task('sassdoc', function() {
+function sassdoc() {
+	log('Generate Sassdoc ' + new Date().toString());
 	let options = {
 		dest: 'docs',
 		verbose: true
 	};
 
-	return gulp.src('./scss/**/*.scss').pipe(sassdoc(options));
-});
+	return gulp.src(paths.scss).pipe(sassdocs(options));
+}
+
+/**
+ * Create watch tasks.
+ */
+function watch() {
+	gulp.watch(paths.scss, gulp.series(clean, styles, minify));
+	gulp.watch(paths.scripts, scripts);
+	gulp.watch(paths.images, images);
+}
+
+const build = gulp.series( clean,
+	gulp.parallel(styles, scripts, images, sassdoc),
+	minify,
+	watch
+);
+
+/*
+ * Declare tasks
+ */
+exports.clean = clean;
+exports.images = images;
+exports.styles = styles;
+exports.scripts = scripts;
+exports.watch = watch;
+exports.build = build;
+
+/*
+ * Define default task that can be called by just running `gulp` from cli
+ */
+exports.default = build;

@@ -12,7 +12,7 @@ function block_templates( $args, $post_type ) {
 		$args[ 'template' ] = [
 			[
 				'core/heading', [
-					'placeholder' => __( 'Subheadline', 'themename' )
+					'placeholder' => __( 'Subheadline', 'gutenbergtheme' )
 				]
 			],
 			[
@@ -23,7 +23,13 @@ function block_templates( $args, $post_type ) {
 			[
 				'core/paragraph', [
 					'align' => 'left',
-					'placeholder' => __( 'Incididunt aliquip culpa dolore amet sunt voluptate excepteur aliqua deserunt in cillum ullamco est sit. Incididunt aliquip culpa dolore amet sunt voluptate excepteur aliqua deserunt in cillum ullamco est sit.', 'themename' )
+					'placeholder' => __( 'Incididunt aliquip culpa dolore amet sunt voluptate excepteur aliqua deserunt in cillum ullamco est sit.', 'gutenbergtheme' )
+				]
+			],
+			[
+				'core/paragraph', [
+					'align' => 'left',
+					'placeholder' => __( 'Incididunt aliquip culpa dolore amet sunt voluptate excepteur aliqua deserunt in cillum ullamco est sit.', 'gutenbergtheme' )
 				]
 			],
 			[
@@ -36,7 +42,7 @@ function block_templates( $args, $post_type ) {
 			],
 			[
 				'core/heading', [
-					'placeholder' => __( 'Another Subheadline', 'themename' )
+					'placeholder' => __( 'Another Subheadline', 'gutenbergtheme' )
 				]
 			],			
 			[
@@ -46,12 +52,57 @@ function block_templates( $args, $post_type ) {
 			],
 			[
 				'core/paragraph', [					
-					'placeholder' => __( 'Irure minim velit dolore sint tempor officia. Cupidatat enim dolore sunt enim pariatur et minim eiusmod Lorem id exercitation reprehenderit. In deserunt voluptate commodo officia adipisicing adipisicing voluptate culpa magna fugiat ullamco. Proident excepteur excepteur pariatur irure voluptate quis in est aute nulla cillum quis consectetur. Reprehenderit eiusmod commodo excepteur ipsum laboris voluptate.', 'themename' )
+					'placeholder' => __( 'Irure minim velit dolore sint tempor officia. Cupidatat enim dolore sunt enim pariatur et minim eiusmod Lorem id exercitation reprehenderit. In deserunt voluptate commodo officia adipisicing adipisicing voluptate culpa magna fugiat ullamco. Proident excepteur excepteur pariatur irure voluptate quis in est aute nulla cillum quis consectetur. Reprehenderit eiusmod commodo excepteur ipsum laboris voluptate.', 'gutenbergtheme' )
 				]
 			],
+		];
+
+	} elseif ( 'page' === $post_type ) {
+	
+		$args[ 'template' ] = [
+			[
+				'core/cover', [
+					'align' => 'full',
+				]
+			],
+			[
+				'core/heading', [
+					'placeholder' => __( 'Subheadline', 'gutenbergtheme' )
+				]
+			],
+			[
+				'core/columns', [
+					'align' => 'wide'
+				], 
+				[
+					[
+						'core/paragraph', [
+							'layout' => 'column-1',
+							'placeholder' => 'Ipsum tempor amet incididunt consectetur sunt labore nulla veniam. Ipsum tempor amet incididunt consectetur sunt labore nulla veniam.'
+						]
+					],					
+					[
+						'core/quote', [
+							'layout' => 'column-2'
+						]
+					],
+				]
+			],
+			[
+				'core/separator'
+			],			
+			[
+				'core/heading', [
+					'placeholder' => __( 'Main Content Heading', 'gutenbergtheme' )
+				]
+			],			
+			[
+				'core/paragraph', [
+					'placeholder' => 'Ea sit et sit sit nulla pariatur quis cupidatat dolor elit adipisicing voluptate est deserunt. Irure exercitation cupidatat do amet et ad anim tempor ex. Eiusmod labore nostrud laborum irure nostrud id excepteur. Cupidatat laboris est et ullamco fugiat dolor officia cupidatat id quis et nisi do. Eiusmod quis minim ipsum sit aliquip ad adipisicing sint deserunt aute cillum.', 'gutenbergtheme'			
+				]
+			]
 		];
 	}
 
 	return $args;	
-	
 }
