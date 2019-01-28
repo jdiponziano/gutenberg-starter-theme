@@ -31,7 +31,7 @@ const paths = {
 	css: './css/*.css',
 	images: './assets/images/*',
 	scss: './scss/**/*.scss',
-	scripts: ['./js/*.js', '!./js/*.min.js']
+  scripts: ['./js/*.js', '!./js/*.min.js', '!./js/customizer.js']
 };
 
 /**
