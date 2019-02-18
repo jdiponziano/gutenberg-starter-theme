@@ -1,0 +1,66 @@
+/*--------------------------------------------------------------
+# Sidebar
+--------------------------------------------------------------*/
+
+/*--------------------------------------------------------------
+## Content-Sidebar
+--------------------------------------------------------------*/
+.content-area {
+	float: left;
+	margin: 0 (-$size__site-sidebar) 0 0;
+	width: $size__site-main;
+}
+
+.site-main {
+	margin: 0 $size__site-sidebar 0 0;
+}
+
+.site-content .widget-area {
+	float: right;
+	overflow: hidden;
+	width: $size__site-sidebar;
+}
+
+.site-footer {
+	clear: both;
+	width: $size__site-main;
+}
+
+/*--------------------------------------------------------------
+## Sidebar-Content
+--------------------------------------------------------------*/
+.content-area {
+	float: right;
+	margin: 0 0 0 (-$size__site-sidebar);
+	width: $size__site-main;
+}
+
+.site-main {
+	margin: 0 0 0 $size__site-sidebar;
+}
+
+.widget-area {
+	float: left;
+	overflow: hidden;
+	width: $size__site-sidebar;
+}
+
+.site-footer {
+	clear: both;
+	width: $size__site-main;
+}
+
+/*--------------------------------------------------------------
+## No Sidebar
+--------------------------------------------------------------*/
+.no-sidebar {
+	.content-area {
+		float: none;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.site-main {
+		margin-right: 0;
+	}
+}
