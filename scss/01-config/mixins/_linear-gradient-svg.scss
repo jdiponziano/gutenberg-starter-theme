@@ -1,0 +1,34 @@
+/* =============================================================================
+   2-COLOR LINEAR GRADIENT W/ SVG
+   Takes hex codes (without #) and numbers (without %)
+   Uses svg in IE9 (better support than filter, supports rounded corners)
+   linear-gradient-svg('to bottom', 'ffffff', '0', '000000', '100')
+============================================================================= */
+@mixin linear-gradient-svg($direction, $color1, $offset1, $color2, $offset2) {
+    $color1css: unquote('#'+$color1);
+    $color2css: unquote('#'+$color2);
+    $offset1css: unquote('#{$offset1}%');
+    $offset2css: unquote('#{$offset2}%');
+    $color1svg: '%3cstop%20style%3d%22stop%2dcolor%3a%23#{$color1}%22%20offset%3d%22#{$offset1}%25%22%2f%3e';
+    $color2svg: '%3cstop%20style%3d%22stop%2dcolor%3a%23#{$color2}%22%20offset%3d%22#{$offset2}%25%22%2f%3e';
+    $angle_webkit: 'left top, left bottom';
+    $angle_old: 'top';
+    $angle_svg: '%20x2%3d%220%25%22%20y2%3d%22100%25%22';
+    @if $direction == 'to right' {
+        $angle_webkit: 'left top, right top';
+        $angle_svg: '%20x2%3d%22100%25%22';
+        $angle_old: 'left';
+    }
+
+    background: $color1css;
+    background-image: url(data:image/svg+xml,%3c%3fxml%20version%3d%221%2e0%22%3f%3e%3csvg%20xmlns%3d%22http%3a%2f%2fwww%2ew3%2eorg%2f2000%2fsvg%22%20width%3d%22100%25%22%20height%3d%22100%25%22%3e%3cdefs%3e%3clinearGradient%20id%3d%22G%22#{$angle_svg}%3e#{$color1svg}#{$color2svg}%3c%2flinearGradient%3e%3c%2fdefs%3e%3crect%20width%3d%22100%25%22%20height%3d%22100%25%22%20fill%3d%22url%28%23G%29%22%2f%3e%3c%2fsvg%3e);
+    background-image:    -moz-linear-gradient(#{$angle_old}, #{$color1css} #{$offset1css}, #{$color2css} #{$offset2css});
+    background-image:        -webkit-gradient(linear, #{$angle_webkit}, color-stop(#{$offset1css}, #{$color1css}), color-stop(#{$offset2css}, #{$color2css}));
+    background-image: -webkit-linear-gradient(#{$angle_old}, #{$color1css} #{$offset1css}, #{$color2css} #{$offset2css});
+    background-image:      -o-linear-gradient(#{$angle_old}, #{$color1css} #{$offset1css}, #{$color2css} #{$offset2css});
+    background-image:     -ms-linear-gradient(#{$angle_old}, #{$color1css} #{$offset1css}, #{$color2css} #{$offset2css});
+    background-image:         linear-gradient(#{$direction}, #{$color1css} #{$offset1css}, #{$color2css} #{$offset2css});
+    .lte-ie8 & {
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{$color1css}', endColorstr='#{$color2css}', GradientType=0);
+    }
+}

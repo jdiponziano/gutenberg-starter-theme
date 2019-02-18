@@ -1,0 +1,27 @@
+/* Calculate em values*/
+
+@function em($target, $base: $font-size) {
+  @if not unitless($target) {
+    $target: strip-unit($target);
+  }
+  @if not unitless($base) {
+    $base: strip-unit($base);
+  }
+
+  @return ($target / $base) * 1em;
+}
+
+/* Calculate rem values*/
+@function rem($target) {
+  @if not unitless($target) {
+    $target: strip-unit($target);
+  }
+
+  $base: $font-size;
+
+  @if not unitless($base) {
+    $base: strip-unit($base);
+  }
+
+  @return ($target / $base) * 1rem;
+}

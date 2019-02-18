@@ -1,0 +1,26 @@
+// ----------------------------------------------------------------------
+// Vertical Align Middle
+// ----------------------------------------------------------------------
+
+/// Vertically align elements.
+///
+/// @param {string} $position [middle] - The desired vertical alignment.
+///
+
+@mixin valign($position: middle) {
+	position: absolute;
+
+	@if $position == none {
+		top: auto;
+		transform: translateY(0);
+	} @else if $position == top {
+		top: 0%;
+		transform: translateY(0%);
+	} @else if $position == bottom {
+		top: 100%;
+		transform: translateY(-100%);
+	} @else {
+		top: 50%;
+		transform: translateY(-50%);
+	}
+}
