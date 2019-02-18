@@ -53,3 +53,10 @@ require_once( __DIR__ . '/inc/block-templates.php');
 if ( defined( 'JETPACK__VERSION' ) ) {
 	require_once( __DIR__ . '/inc/jetpack.php');
 }
+
+/**
+ * Load WooCommerce compatibility file.
+ */
+if ( class_exists( 'WooCommerce' ) ) {
+	require_once( __DIR__ . '/inc/woocommerce.php');
+}
