@@ -10,6 +10,7 @@ $desktopXl: 1200px;
 //Colors
 $c-black: #000;
 $c-white: #fff;
+$c-grey: #444;
 
 //Brand Colors
 $c-light-blue: #2b9cd8;
@@ -20,9 +21,12 @@ $c-primary: $c-blue;
 $c-secondary: $c-blue;
 $c-link: $c-blue;
 $c-link--hover: $c-blue;
+$c-text: $c-grey;
+$c-heading: $c-blue;
 
 //Fonts
-$font-default: sans-serif;
+$font-body: sans-serif;
+$font-heading: serif;
 $font-size: 16px;
 
 //Container Widths

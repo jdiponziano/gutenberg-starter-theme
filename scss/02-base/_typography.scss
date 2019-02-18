@@ -7,15 +7,26 @@ input,
 select,
 optgroup,
 textarea {
-  color: #444;
-  font-family: "Noto Serif", serif;
-  font-size: 16px;
+  color: $c-text;
+  font-family: $font-body;
+  font-size: $font-size;
   font-size: 1rem;
   line-height: 1.8;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  color: #32373c;
+h1,
+.h1, 
+h2,
+.h2, 
+h3,
+.h3, 
+h4,
+.h4, 
+h5,
+.h5, 
+h6,
+.h6 {
+  color: $c-heading;
   clear: both;
 }
 
@@ -40,7 +51,7 @@ address {
 pre {
   background: #eee;
   font-family: "Courier 10 Pitch", Courier, monospace;
-  font-size: 15px;
+  font-size: rem(15px);
   font-size: 0.9375rem;
   line-height: 1.6;
   margin-bottom: 1.6em;
@@ -51,7 +62,7 @@ pre {
 
 code, kbd, tt, var {
   font-family: Monaco, Consolas, "Andale Mono", "DejaVu Sans Mono", monospace;
-  font-size: 15px;
+  font-size: rem(15px);
   font-size: 0.9375rem;
 }
 
@@ -67,34 +78,4 @@ mark, ins {
 
 big {
   font-size: 125%;
-}
-
-.archive .site-header {
-	margin-bottom: 3.5em;
-}
-
-.site-title {
-	margin: .4375em 0 0;
-	font-size: 38px;
-	font-weight: bold;
-	line-height: 1.2;
-	color: #333332;
-}
-
-.site-title a {
-	text-decoration: none;
-	color: inherit;
-}
-
-.site-branding {
-	margin-bottom: 1.75em;
-}
-
-.site-description {
-	margin: .4375em 0 0;
-	font-size: 17px;
-	font-weight: inherit;
-	line-height: 1.4;
-	word-wrap: break-word;
-	color: #929292;
 }

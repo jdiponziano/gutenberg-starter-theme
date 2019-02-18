@@ -4,7 +4,7 @@
 
 .alignleft,
 .alignright {
-	max-width: 636px !important;	/* Let's work to make this !important unnecessary */
+	max-width: $width-content !important;	/* Let's work to make this !important unnecessary */
 }
 
 .alignleft img,

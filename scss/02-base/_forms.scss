@@ -10,7 +10,7 @@ input[type="submit"] {
   border-radius: 3px;
   background: #e6e6e6;
   color: rgba(0, 0, 0, 0.8);
-  font-size: 12px;
+  font-size: rem(12px);
   font-size: 0.75rem;
   line-height: 1;
   padding: .6em 1em .4em;
@@ -52,7 +52,7 @@ textarea {
   color: #666;
   border: 1px solid #ccc;
   border-radius: 3px;
-  padding: 3px;
+  padding: rem(3px);
 }
 
 input[type="text"]:focus,

@@ -4,13 +4,13 @@
 .entry-content ul,
 .entry-content ol {
   margin: 1.5em auto;
-  max-width: 636px;
+  max-width: $width-content;
   list-style-position: outside;
 }
 
 .entry-content li {
   margin-left: 2.5em;
-  margin-bottom: 6px;
+  margin-bottom: rem(6px);
 }
 
 .entry-content ul ul,
