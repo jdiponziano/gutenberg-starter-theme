@@ -50,7 +50,9 @@ add_action( 'wp_enqueue_scripts', 'themename_woocommerce_scripts' );
  *
  * @link https://docs.woocommerce.com/document/disable-the-default-stylesheet/
  */
-add_filter( 'woocommerce_enqueue_styles', '__return_empty_array' );
+
+ //add_filter( 'woocommerce_enqueue_styles', '__return_empty_array' );
+
 /**
  * Add 'woocommerce-active' class to the body tag.
  *
@@ -142,8 +144,7 @@ if ( ! function_exists( 'themename_woocommerce_wrapper_before' ) ) {
 	 */
 	function themename_woocommerce_wrapper_before() {
 		?>
-		<div id="primary" class="content-area">
-			<main id="main" class="site-main" role="main">
+		<main id="primary" class="site-main">
 			<?php
 	}
 }
