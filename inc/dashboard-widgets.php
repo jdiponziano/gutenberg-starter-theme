@@ -12,7 +12,7 @@ function themename_add_dashboard_widgets() {
                  'themename_dashboard_widget_function' // Display function.
         );	
 }
-add_action( 'wp_dashboard_setup', 'themename_add_dashboard_widgets' );
+//add_action( 'wp_dashboard_setup', 'themename_add_dashboard_widgets' );
 
 /**
  * Create the function to output the contents of our Dashboard Widget.
