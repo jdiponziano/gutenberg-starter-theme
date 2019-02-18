@@ -29,7 +29,7 @@ const image = require('gulp-image');
 // Assets paths.
 const paths = {
 	css: './css/*.css',
-	images: './assets/images/*',
+	images: './assets/images/originals/*',
 	scss: './scss/**/*.scss',
   scripts: ['./js/*.js', '!./js/*.min.js', '!./js/customizer.js']
 };
