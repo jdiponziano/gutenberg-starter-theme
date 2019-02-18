@@ -105,6 +105,6 @@ add_action( 'after_setup_theme', 'themename_setup' );
  * @global int $content_width
  */
 function themename_content_width() {
-	$GLOBALS['content_width'] = apply_filters( 'themename_content_width', 640 );
+	$GLOBALS['content_width'] = apply_filters( 'themename_content_width', 980 );
 }
 add_action( 'after_setup_theme', 'themename_content_width', 0 );
