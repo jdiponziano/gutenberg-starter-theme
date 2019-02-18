@@ -93,6 +93,15 @@
 
 		// Add support for responsive embeds.
 		add_theme_support( 'responsive-embeds' );
+
+		if( function_exists('acf_add_options_page') ) {
+			acf_add_options_page(array(
+				'page_title' 	=> 'Theme Settings',
+				'menu_title' 	=> 'Theme Settings',
+				'menu_slug' 	=> 'theme-settings',
+				'position' => 2,
+			));	
+		}
 	}
 endif;
 add_action( 'after_setup_theme', 'themename_setup' );
