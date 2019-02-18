@@ -43,6 +43,11 @@ require_once( __DIR__ . '/inc/template-functions.php');
 require_once( __DIR__ . '/inc/customizer.php');
 
 /**
+ * Set up admin dashboard widgets
+ */
+require_once( __DIR__ . '/inc/dashboard-widgets.php');
+
+/**
  * Set up block templates
  */
 require_once( __DIR__ . '/inc/block-templates.php');
